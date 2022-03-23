@@ -10,6 +10,8 @@ public class MainSceneMove : MonoBehaviour
     public int LevelIndex;
     private bool StartFall = false;
     public GameObject MainCamera, MainCanvas;
+    public GameObject[] FullImage, RawImage;
+    public Sprite[] NewSprite;
     void Start()
     {
         LevelIndex = 2;
@@ -18,17 +20,21 @@ public class MainSceneMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (StartFall == false)
+        if (StartFall == false && Ismoving == false)
         {
             if (Input.GetKeyDown(KeyCode.D) && LevelIndex < 4)
             {
                 StartCoroutine(CubeRoll(Vector3.right));
                 LevelIndex++;
+                FullImage[LevelIndex - 1].SetActive(false);
+                RawImage[LevelIndex - 1].SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.A) && LevelIndex > 1)
             {
                 StartCoroutine(CubeRoll(Vector3.left));
                 LevelIndex--;
+                FullImage[LevelIndex + 1].SetActive(false);
+                RawImage[LevelIndex + 1].SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
@@ -48,7 +54,7 @@ public class MainSceneMove : MonoBehaviour
     public IEnumerator CubeRoll(Vector3 Direction)
     {
         Ismoving = true;
-        var anchor = transform.position + (Vector3.down + Direction) * this.transform.localScale.x / 2;
+        var anchor = transform.position + (Vector3.down + Direction) * this.transform.localScale.x / 2 * 5f;
         var axis = Vector3.Cross(Vector3.up, Direction);
         for (var i = 0; i < 90 / _rollSpeed; i++)
         {
@@ -56,13 +62,18 @@ public class MainSceneMove : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForSeconds(0.01f);
+        FullImage[LevelIndex].SetActive(true);
+        RawImage[LevelIndex].SetActive(false);
         Ismoving = false;
     }
 
     public IEnumerator EnsmallAnimation2()
     {
+        this.transform.eulerAngles = Vector3.zero;
+        FullImage[LevelIndex].SetActive(false);
+        this.GetComponent<SpriteRenderer>().sprite = NewSprite[LevelIndex];
         float time = 0, duration = 2f;
-        float scaleModifier = 1, endValue = 0.5f;
+        float scaleModifier = 1 * 0.2f, endValue = 0.5f * 0.2f;
         float startValue = scaleModifier, startcolor = this.GetComponent<SpriteRenderer>().color.a;
         float ColorPercentage;
         Vector3 startScale = new Vector3(2f, 2f, 2f);

@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ColorCube : MonoBehaviour
 {
-    public GameObject Colormeter;
-    public Color LevelTargetColor;
+    private GameObject UICounter;
     private void Start()
     {
+        UICounter = GameObject.FindWithTag("UICounter");
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -17,14 +18,15 @@ public class ColorCube : MonoBehaviour
             {
                 PlayerController.ColorStage++;
                 Debug.Log(PlayerController.ColorStage);
-                collision.gameObject.GetComponent<SpriteRenderer>().color = Color.Lerp(Color.white, LevelTargetColor, (PlayerController.ColorStage) / 5);
+                collision.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = collision.GetComponent<PlayerController>().PatternArray[PlayerController.ColorStage];
                 if (collision.gameObject.GetComponent<PlayerController>().Mybrother != null)
                 {
-                    collision.gameObject.GetComponent<PlayerController>().Mybrother.GetComponent<SpriteRenderer>().color = collision.gameObject.GetComponent<SpriteRenderer>().color;
+                    collision.gameObject.GetComponent<PlayerController>().Mybrother.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = collision.GetComponent<PlayerController>().PatternArray[(int)PlayerController.ColorStage];
                 }
                 this.gameObject.SetActive(false);
                 PlayerController.StateArray.Add(this.gameObject);
-                Colormeter.GetComponent<ColorMeter>().ColorCheck();
+                UICounter.GetComponent<Text>().text = PlayerController.ColorStage + "/5";
+                //Colormeter.GetComponent<ColorMeter>().ColorCheck();
             }
         }
     }

@@ -7,10 +7,11 @@ public class CameraFollow : MonoBehaviour
     public GameObject Player;
     public float followspeed;
     public Vector3 offset;
+    public Sprite StartSprite;
 
     private void Start()
     {
-        PlayerController.CheckColor = Color.white;
+        PlayerController.CheckSprite = StartSprite;
         PlayerController.CheckScale = new Vector3(1, 1, 1);
         PlayerController.ColorStage = 0;
     }

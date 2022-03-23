@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,21 +11,25 @@ public class PlayerController : MonoBehaviour
     public Vector3 CheckPoint;
     public GameObject ColorCheck;
 
+    public Sprite[] PatternArray = new Sprite[6];
     public static List<GameObject> StateArray = new List<GameObject>();
     public static List<GameObject> BroArray = new List<GameObject>();
-    public static Color CheckColor;
+    public static Sprite CheckSprite;
     public static Vector3 CheckScale;
     public static bool CheckRect;
-    public static float ColorStage;
+    public static int ColorStage;
     public static int CheckColorStage;
     public float ZRotation;
     public bool IsRect;
     public GameObject Mybrother;
     public static GameObject TrueMe;
+
+    public GameObject UICounter;
     private void Start()
     {
         Ismoving = false;
         IsRect = false;
+        UICounter = GameObject.FindWithTag("UICounter");
     }
 
     private void Update()
@@ -37,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
         if (Ismoving == false)
         {
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKey(KeyCode.D))
             {
                 if (IsRect == false)
                 {
@@ -48,7 +53,7 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(RectRoll(Vector3.right));
                 }
             }
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKey(KeyCode.A))
             {
                 if (IsRect == false)
                 {
@@ -59,7 +64,7 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(RectRoll(Vector3.left));
                 }
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKey(KeyCode.R))
             {
                 if (TrueMe.GetComponent<PlayerController>().Mybrother != null)
                 {
@@ -70,9 +75,8 @@ public class PlayerController : MonoBehaviour
                 this.transform.localEulerAngles = new Vector3(0, 0, 0);
                 ColorStage = CheckColorStage;
                 IsRect = CheckRect;
-                this.GetComponent<SpriteRenderer>().color = CheckColor;
-                ColorCheck.GetComponent<ColorMeter>().ColorCheck();
-            
+                transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = CheckSprite;
+                UICounter.GetComponent<Text>().text = PlayerController.ColorStage + "/5";
                 for (int i =0; i < StateArray.Count; i++)
                 {
                     StateArray[i].SetActive(true);

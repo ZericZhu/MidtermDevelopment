@@ -27,9 +27,9 @@ public class RectChange : MonoBehaviour
 
     public IEnumerator RectAnimation()
     {
-        float time = 0, duration = 1.5f;
-        Vector3 endScale = new Vector3(2, 1f, 1);
-        Vector3 startScale = new Vector3(1, 1, 1f);
+        float time = 0, duration = 2f;
+        Vector3 endScale = new Vector3(0.4f, 0.2f, 0.2f);
+        Vector3 startScale = new Vector3(0.2f, 0.2f, 0.2f);
         float XModifier, YModifier;
         while (time < duration)
         {

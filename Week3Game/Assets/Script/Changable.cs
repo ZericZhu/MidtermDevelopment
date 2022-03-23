@@ -51,10 +51,10 @@ public class Changable : MonoBehaviour
 
     public IEnumerator EnlargeAnimation()
     {
-        float time = 0, duration = 1.5f;
-        float scaleModifier = 1, endValue = 3;
+        float time = 0, duration = 2f;
+        float scaleModifier = 1, endValue = 1.5f;
         float startValue = 1;
-        Vector3 startScale = new Vector3(0.3f, 0.3f, 0.3f);
+        Vector3 startScale = new Vector3(0.2f, 0.2f, 0.2f);
         while (time < duration)
         {
             scaleModifier = Mathf.Lerp(startValue, endValue, time / duration);
@@ -68,10 +68,10 @@ public class Changable : MonoBehaviour
 
     public IEnumerator EnsmallAnimation()
     {
-        float time = 0, duration = 1.5f;
-        float scaleModifier = 3, endValue = 1;
+        float time = 0, duration = 2f;
+        float scaleModifier = 1.5f, endValue = 1;
         float startValue = scaleModifier;
-        Vector3 startScale = new Vector3(0.3f, 0.3f, 0.3f);
+        Vector3 startScale = new Vector3(0.4f, 0.4f, 0.4f);
         while (time < duration)
         {
             scaleModifier = Mathf.Lerp(startValue, endValue, time / duration);
