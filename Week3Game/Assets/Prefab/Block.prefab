@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textColStart: {r: 0.14117648, g: 0.13333334, b: 0.13725491, a: 0}
-  textColEnd: {r: 0.14117648, g: 0.13333334, b: 0.13725491, a: 1}
+  textColEnd: {r: 0.14117648, g: 0.13333334, b: 0.13725491, a: 0.5019608}
 --- !u!1 &2827438632469892812
 GameObject:
   m_ObjectHideFlags: 0

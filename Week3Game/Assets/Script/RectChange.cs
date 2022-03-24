@@ -15,13 +15,10 @@ public class RectChange : MonoBehaviour
     {
         if (collision.GetComponent<PlayerController>() != null)
         {
-            if (collision.gameObject.GetComponent<PlayerController>().Ismoving == false)
-            {
                 collision.gameObject.transform.localScale = new Vector3(collision.gameObject.transform.localScale.x * 2, collision.gameObject.transform.localScale.y, 1);
                 collision.gameObject.GetComponent<PlayerController>().IsRect = true;
                 this.gameObject.SetActive(false);
                 PlayerController.StateArray.Add(this.gameObject);
-            }
         }
     }
 

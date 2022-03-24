@@ -68,6 +68,7 @@
     <Compile Include="Assets/Script/End.cs" />
     <Compile Include="Assets/Script/Split.cs" />
     <Compile Include="Assets/Script/OnChangeColor.cs" />
+    <Compile Include="Assets/Script/ScoreKeeper.cs" />
     <Compile Include="Assets/Script/UpConvoyer.cs" />
     <Compile Include="Assets/Script/MainSceneMove.cs" />
     <Compile Include="Assets/Script/IAMZERIC.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets/Script/RoombaControl.cs" />
     <Compile Include="Assets/Script/Conveyor.cs" />
     <Compile Include="Assets/Script/CubeChange.cs" />
+    <Compile Include="Assets/Script/copytext.cs" />
     <Compile Include="Assets/Script/Unittt.cs" />
     <Compile Include="Assets/Script/GameManager.cs" />
     <Compile Include="Assets/Script/sa/IAMCUBE.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="Assets/Script/KeepRotate.cs" />
     <Compile Include="Assets/Script/sa/Dmo.cs" />
     <Compile Include="Assets/Script/sa/Dettection.cs" />
+    <Compile Include="Assets/Script/climbZone.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

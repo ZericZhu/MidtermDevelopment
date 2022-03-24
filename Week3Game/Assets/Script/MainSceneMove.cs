@@ -10,11 +10,20 @@ public class MainSceneMove : MonoBehaviour
     public int LevelIndex;
     private bool StartFall = false;
     public GameObject MainCamera, MainCanvas;
-    public GameObject[] FullImage, RawImage;
+    public GameObject[] FullImage, RawImage, moveImage;
     public Sprite[] NewSprite;
+    public GameObject Score;
     void Start()
     {
         LevelIndex = 2;
+        Score = GameObject.FindGameObjectWithTag("score");
+        for (int i = 1; i < 5; i++)
+        {
+            if (Score.GetComponent<ScoreKeeper>().levelfinished[i])
+            {
+                moveImage[i].SetActive(true);
+            }
+        }
     }
 
     // Update is called once per frame

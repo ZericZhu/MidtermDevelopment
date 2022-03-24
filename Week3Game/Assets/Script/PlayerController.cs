@@ -23,13 +23,17 @@ public class PlayerController : MonoBehaviour
     public bool IsRect;
     public GameObject Mybrother;
     public static GameObject TrueMe;
-
+    public AudioClip audio_rotate;
     public GameObject UICounter;
+    private AudioSource myaudio;
+    public static bool IsClimbing;
     private void Start()
     {
         Ismoving = false;
         IsRect = false;
         UICounter = GameObject.FindWithTag("UICounter");
+        myaudio = this.gameObject.GetComponent<AudioSource>();
+        IsClimbing = false;
     }
 
     private void Update()
@@ -46,7 +50,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (IsRect == false)
                 {
-                    StartCoroutine(CubeRoll(Vector3.right));
+                        StartCoroutine(CubeRoll(Vector3.right));
                 }
                 else
                 {
@@ -57,7 +61,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (IsRect == false)
                 {
-                    StartCoroutine(CubeRoll(Vector3.left));
+                        StartCoroutine(CubeRoll(Vector3.left));
                 }
                 else
                 {
@@ -95,7 +99,7 @@ public class PlayerController : MonoBehaviour
         {
             anchor = transform.position + (Vector3.down + Direction * 2) * this.transform.localScale.y/2;
         }
-            
+        myaudio.Play();
             var axis = Vector3.Cross(Vector3.up, Direction);
             for (var i = 0; i <= 20; i++)
             {
@@ -111,12 +115,18 @@ public class PlayerController : MonoBehaviour
         Ismoving = true;
         var anchor = transform.position + (Vector3.down + Direction) * this.transform.localScale.x / 2;
         var axis = Vector3.Cross(Vector3.up, Direction);
+        myaudio.Play();
         for (var i = 0; i <= 19; i++)
         {
             transform.RotateAround(anchor, axis, _rollSpeed);
             yield return new WaitForSeconds(0.01f);
         }
-        yield return new WaitForSeconds(0.01f);
+        if (IsClimbing)
+        {
+            Debug.Log("LLLL");
+            yield return new WaitForSeconds(0.2f);
+        }
+        else { yield return new WaitForSeconds(0.01f); }
         Ismoving = false;
     }
 }

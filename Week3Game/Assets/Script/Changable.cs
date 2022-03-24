@@ -4,10 +4,12 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
+
 public class Changable : MonoBehaviour
 {
     public Vector3 ChangeFactor;
     public bool IsBig, IsSmall;
+    public AudioClip myaudio;
 
     private void OnEnable()
     {
@@ -29,8 +31,6 @@ public class Changable : MonoBehaviour
     {
         if (collision.GetComponent<PlayerController>() != null)
         {
-            if (collision.gameObject.GetComponent<PlayerController>().Ismoving == false)
-            {
                 if (collision.gameObject.GetComponent<PlayerController>().IsRect == false)
                 {
                     collision.gameObject.transform.localScale += ChangeFactor;
@@ -43,9 +43,9 @@ public class Changable : MonoBehaviour
                 {
                     collision.gameObject.transform.localScale += new Vector3(ChangeFactor.x *2, ChangeFactor.y,ChangeFactor.z);
                 }
+            playAudio(myaudio);
                 this.gameObject.SetActive(false);
                 PlayerController.StateArray.Add(this.gameObject);
-            }
         }
     }
 
@@ -54,7 +54,7 @@ public class Changable : MonoBehaviour
         float time = 0, duration = 2f;
         float scaleModifier = 1, endValue = 1.5f;
         float startValue = 1;
-        Vector3 startScale = new Vector3(0.2f, 0.2f, 0.2f);
+        Vector3 startScale = new Vector3(0.15f, 0.15f, 0.15f);
         while (time < duration)
         {
             scaleModifier = Mathf.Lerp(startValue, endValue, time / duration);
@@ -69,9 +69,9 @@ public class Changable : MonoBehaviour
     public IEnumerator EnsmallAnimation()
     {
         float time = 0, duration = 2f;
-        float scaleModifier = 1.5f, endValue = 1;
+        float scaleModifier = 1f, endValue = 0.667f;
         float startValue = scaleModifier;
-        Vector3 startScale = new Vector3(0.4f, 0.4f, 0.4f);
+        Vector3 startScale = new Vector3(0.225f, 0.225f, 0.225f);
         while (time < duration)
         {
             scaleModifier = Mathf.Lerp(startValue, endValue, time / duration);
@@ -82,5 +82,12 @@ public class Changable : MonoBehaviour
         transform.localScale = startScale * endValue;
         StartCoroutine(EnsmallAnimation());
     }
-
+    private void playAudio(AudioClip tempclip)
+    {
+        GameObject temp_gameobject = new GameObject();
+        AudioSource temp_audio = temp_gameobject.AddComponent<AudioSource>();
+        temp_audio.clip = tempclip;
+        temp_audio.Play();
+        Destroy(temp_gameobject, 2f);
+    }
 }

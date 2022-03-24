@@ -31,7 +31,7 @@ public class FadeZone : MonoBehaviour
         Image Temp_Sprite = Temp_pattern.GetComponent<Image>();
         Text Temp_text = Temp_num.GetComponent<Text>();
         Color startValue = new Color(1, 1, 1, 0);
-        Color endValue = new Color(1, 1, 1, 1);
+        Color endValue = new Color(1, 1, 1, 0.5f);
         while (time < 0.3f)
         {
             Temp_Sprite.color = Color.Lerp(startValue, endValue, time / 0.3f);
@@ -48,7 +48,7 @@ public class FadeZone : MonoBehaviour
         float time = 0;
         Image Temp_Sprite = Temp_pattern.GetComponent<Image>();
         Text Temp_text = Temp_num.GetComponent<Text>();
-        Color startValue = new Color(1, 1, 1, 1);
+        Color startValue = new Color(1, 1, 1, 0.5f);
         Color endValue = new Color(1, 1, 1, 0);
         while (time < 0.3f)
         {
