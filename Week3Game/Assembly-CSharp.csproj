@@ -72,6 +72,7 @@
     <Compile Include="Assets/Script/UpConvoyer.cs" />
     <Compile Include="Assets/Script/MainSceneMove.cs" />
     <Compile Include="Assets/Script/IAMZERIC.cs" />
+    <Compile Include="Assets/Script/climbZone.cs" />
     <Compile Include="Assets/Script/Jumper.cs" />
     <Compile Include="Assets/Script/RectChange.cs" />
     <Compile Include="Assets/Script/ColorMeter.cs" />
@@ -90,7 +91,6 @@
     <Compile Include="Assets/Script/KeepRotate.cs" />
     <Compile Include="Assets/Script/sa/Dmo.cs" />
     <Compile Include="Assets/Script/sa/Dettection.cs" />
-    <Compile Include="Assets/Script/climbZone.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

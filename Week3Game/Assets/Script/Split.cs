@@ -23,15 +23,12 @@ public class Split : MonoBehaviour
     {
         if (collision.GetComponent<PlayerController>() != null)
         {
-            if (collision.gameObject.GetComponent<PlayerController>().Ismoving == false)
-            {
                 if (collision.gameObject.GetComponent<PlayerController>().IsRect == false)
                 {
                     Splitcube(collision.gameObject);
                 }
                 this.gameObject.SetActive(false);
                 PlayerController.StateArray.Add(this.gameObject);
-            }
         }
     }
 

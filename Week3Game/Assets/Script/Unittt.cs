@@ -15,8 +15,6 @@ public class Unittt : MonoBehaviour
     {
         if (collision.GetComponent<PlayerController>() != null)
         {
-            if (collision.gameObject.GetComponent<PlayerController>().Ismoving == false)
-            {
                 if (collision.gameObject.GetComponent<PlayerController>().IsRect == false)
                 {
                     if (collision.gameObject.GetComponent<PlayerController>().Mybrother != null)
@@ -27,7 +25,6 @@ public class Unittt : MonoBehaviour
                 }
                 this.gameObject.SetActive(false);
                 PlayerController.StateArray.Add(this.gameObject);
-            }
         }
     }
 
