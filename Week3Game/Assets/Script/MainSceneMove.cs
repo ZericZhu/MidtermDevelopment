@@ -13,10 +13,13 @@ public class MainSceneMove : MonoBehaviour
     public GameObject[] FullImage, RawImage, moveImage;
     public Sprite[] NewSprite;
     public GameObject Score;
+    private AudioSource myaudio;
+    public AudioSource backmusic;
     void Start()
     {
         LevelIndex = 2;
         Score = GameObject.FindGameObjectWithTag("score");
+        myaudio = this.GetComponent<AudioSource>();
         for (int i = 1; i < 5; i++)
         {
             if (Score.GetComponent<ScoreKeeper>().levelfinished[i])
@@ -70,6 +73,7 @@ public class MainSceneMove : MonoBehaviour
             transform.RotateAround(anchor, axis, _rollSpeed);
             yield return new WaitForSeconds(0.01f);
         }
+        myaudio.Play();
         yield return new WaitForSeconds(0.01f);
         FullImage[LevelIndex].SetActive(true);
         RawImage[LevelIndex].SetActive(false);
@@ -85,6 +89,7 @@ public class MainSceneMove : MonoBehaviour
         float scaleModifier = 1 * 0.2f, endValue = 0.5f * 0.2f;
         float startValue = scaleModifier, startcolor = this.GetComponent<SpriteRenderer>().color.a;
         float ColorPercentage;
+        float Startvolume = backmusic.volume;
         Vector3 startScale = new Vector3(2f, 2f, 2f);
         while (time < duration)
         {
@@ -92,6 +97,7 @@ public class MainSceneMove : MonoBehaviour
             scaleModifier = Mathf.Lerp(startValue, endValue, time / duration);
             transform.localScale = startScale * scaleModifier;
             this.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, ColorPercentage);
+            backmusic.volume = Mathf.Lerp(Startvolume, 0, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
